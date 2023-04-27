@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_ui_action">
+    <sys_ui_action action="INSERT_OR_UPDATE">
+        <action_name>sn_appauthor_upload_to_app_repo</action_name>
+        <active>true</active>
+        <client>true</client>
+        <client_script_v2><![CDATA[function onClick(g_form) {
+
+}]]></client_script_v2>
+        <comments>Packages all the code from an app and uploads to another instance.</comments>
+        <condition/>
+        <form_action>true</form_action>
+        <form_button>true</form_button>
+        <form_button_v2>false</form_button_v2>
+        <form_context_menu>true</form_context_menu>
+        <form_link>true</form_link>
+        <form_menu_button_v2>false</form_menu_button_v2>
+        <form_style/>
+        <format_for_configurable_workspace>false</format_for_configurable_workspace>
+        <hint>Packages all the code from an app and uploads to another instance.</hint>
+        <isolate_script>true</isolate_script>
+        <list_action>false</list_action>
+        <list_banner_button>false</list_banner_button>
+        <list_button>false</list_button>
+        <list_choice>false</list_choice>
+        <list_context_menu>false</list_context_menu>
+        <list_link>false</list_link>
+        <list_save_with_form_button>false</list_save_with_form_button>
+        <list_style/>
+        <messages/>
+        <name>Publish to My Application Repository</name>
+        <onclick>checkForSkippedRecords()</onclick>
+        <order>105</order>
+        <script><![CDATA[function checkForSkippedRecords() {
+	var params = {};
+	params.sysId = g_form.getUniqueValue();
+	if(g_form.getValue("scope")== "global") {
+		var ga = new GlideAjax("ScopedAppUploaderAJAX");
+		ga.addParam("sysparm_name", "getStolenFilesDetails");
+		ga.addParam("sysparm_app_scope", g_form.getUniqueValue()); // sys_id in case of global apps
+		ga.getXML(openRelevantModal);
+	} else {
+		uploadToInstance(params);
+	}
+
+}
+
+function openRelevantModal(response) {
+	var params = {};
+	params.sysId = g_form.getUniqueValue();
+	params.appName = g_form.getValue("name");
+	params.scope = g_form.getValue("scope");
+	params.numberOfStolenFilesForApp = parseInt(response.responseXML.getElementsByTagName("number_of_stolen_files_for_app")[0].getAttribute("value"));
+	params.viewDetailsLink = response.responseXML.getElementsByTagName("view_details_link")[0].getAttribute("value");
+
+	if(params.numberOfStolenFilesForApp > 0 && params.viewDetailsLink)
+		renderSkippedRecordsWarningDialog(params);
+	else
+		uploadToInstance(params);
+}
+
+function uploadToInstance(params) {
+    var map = new GwtMessage().getMessages(["Publish to My Application Repository"]);
+    var dd = new GlideModal("sn_appauthor_app_upload_to_repo");
+    dd.setTitle(map["Publish to My Application Repository"]);
+    dd.setPreference('sysparm_sys_id', params.sysId);
+	dd.setPreference('sysparm_publish_to_app_store', 'false');
+    dd.setWidth(500);
+    dd.render();
+}
+
+function renderSkippedRecordsWarningDialog(params) {
+	var skippedRecordsWarningDialog = new GlideModal("sn_appauthor_skipped_records_warning_dialog");
+	skippedRecordsWarningDialog.setTitle("Publish");
+	skippedRecordsWarningDialog.setPreference("sysparm_app_name", params.appName);
+	skippedRecordsWarningDialog.setPreference("sysparm_view_details_link", params.viewDetailsLink);
+	skippedRecordsWarningDialog.setPreference("sysparm_number_of_conflicts_for_publish", params.numberOfStolenFilesForApp);
+	skippedRecordsWarningDialog.setPreference("sysparm_sys_id", params.sysId);
+	skippedRecordsWarningDialog.on("continueAppPublish", function() {
+		uploadToInstance(params);
+	});
+	skippedRecordsWarningDialog.render();
+}]]></script>
+        <show_insert>false</show_insert>
+        <show_multiple_update>false</show_multiple_update>
+        <show_query>false</show_query>
+        <show_update>true</show_update>
+        <sys_class_name>sys_ui_action</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-04-27 16:18:18</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>7398ec9c4722211083058977536d432e</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Publish to My Application Repository</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="READ ME" source="x_483355_read_me">1985e8d84722211083058977536d4347</sys_package>
+        <sys_policy>protected</sys_policy>
+        <sys_scope display_value="READ ME">1985e8d84722211083058977536d4347</sys_scope>
+        <sys_update_name>sys_ui_action_7398ec9c4722211083058977536d432e</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-04-27 16:19:41</sys_updated_on>
+        <table>sys_app</table>
+        <ui11_compatible>false</ui11_compatible>
+        <ui16_compatible>false</ui16_compatible>
+    </sys_ui_action>
+</record_update>

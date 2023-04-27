@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_acl_role">
+    <sys_security_acl_role action="INSERT_OR_UPDATE">
+        <sys_class_name>sys_security_acl_role</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-04-27 16:15:59</sys_created_on>
+        <sys_id>f918249c4722211083058977536d439f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_483355_read_me_read_me.x_483355_read_me.admin</sys_name>
+        <sys_package display_value="READ ME" source="x_483355_read_me">1985e8d84722211083058977536d4347</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="READ ME">1985e8d84722211083058977536d4347</sys_scope>
+        <sys_security_acl display_value="x_483355_read_me_read_me">6918249c4722211083058977536d439c</sys_security_acl>
+        <sys_update_name>sys_security_acl_role_f918249c4722211083058977536d439f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-04-27 16:15:59</sys_updated_on>
+        <sys_user_role display_value="x_483355_read_me.admin" name="x_483355_read_me.admin">5d85e8d84722211083058977536d4358</sys_user_role>
+        <transaction_id/>
+    </sys_security_acl_role>
+</record_update>

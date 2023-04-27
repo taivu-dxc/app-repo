@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_acl">
+    <sys_security_acl action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <admin_overrides>true</admin_overrides>
+        <advanced>false</advanced>
+        <condition/>
+        <description/>
+        <name>x_483355_read_me_read_me</name>
+        <operation display_value="delete">delete</operation>
+        <script/>
+        <sys_class_name>sys_security_acl</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-04-27 16:15:59</sys_created_on>
+        <sys_id>f918249c4722211083058977536d43f8</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_483355_read_me_read_me</sys_name>
+        <sys_package display_value="READ ME" source="x_483355_read_me">1985e8d84722211083058977536d4347</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="READ ME">1985e8d84722211083058977536d4347</sys_scope>
+        <sys_update_name>sys_security_acl_f918249c4722211083058977536d43f8</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-04-27 16:15:59</sys_updated_on>
+        <type display_value="record">record</type>
+    </sys_security_acl>
+</record_update>
